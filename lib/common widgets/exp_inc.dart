@@ -6,26 +6,27 @@ Widget incomeExpense(Color color, String title, String img) {
     decoration: BoxDecoration(
       color: color,
       shape: BoxShape.rectangle,
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(20),
     ),
     padding: const EdgeInsets.all(16),
     child: Row(
       children: [
         Container(
-          padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
+          width: 55,
+          height: 55,
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(20),
             color: Colors.white,
           ),
-          child: CircleAvatar(
-            radius: 17,
-            backgroundColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
             child: Image(
               image: AssetImage(img),
-              height: 40,
             ),
           ),
         ),
+
         const SizedBox(
             width: 8), // Add spacing between the CircleAvatar and Column
         Column(
@@ -33,8 +34,7 @@ Widget incomeExpense(Color color, String title, String img) {
           children: [
             Text(
               title,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 14, color: whiteColor),
+              style: const TextStyle(fontSize: 14, color: whiteColor),
             ),
             const Text(
               "₹50000",

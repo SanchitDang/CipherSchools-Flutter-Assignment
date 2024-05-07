@@ -157,8 +157,9 @@ class _AddIncomeState extends State<AddIncome> {
                         child: loginButton(() async {
                           String? uid =
                               await SharedPreferencesService.getUserIDFromSF();
-                          DatabaseService().addIncome(
+                          DatabaseService().addEntry(
                               uid ?? "",
+                              'income',
                               selectedWallet!,
                               double.parse(amountController.text),
                               selectedCategory!,

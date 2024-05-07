@@ -25,36 +25,40 @@ class DatabaseService {
   }
 
   // Function to add expense or income entry
-  Future<void> addEntry(String userId, String type, double amount,
-      String category, String description) async {
+  Future<void> addEntry(String userId, String type, String paymentMethod,
+      double amount, String category, String description) async {
     try {
       // Get reference to Firestore collection
       CollectionReference entries = FirebaseFirestore.instance
           .collection('users')
           .doc(userId)
-          .collection('entries');
+          .collection(type);
 
       // Add entry to Firestore
-      await entries.add({
+      DocumentReference entryRef = await entries.add({
         'type': type,
+        'payment_method': paymentMethod,
         'amount': amount,
         'category': category,
         'description': description,
         'timestamp': DateTime.now(),
       });
+
+      // Update the added entry with its document ID (UID)
+      await entryRef.update({'uid': entryRef.id});
     } catch (e) {
       print("Error adding entry: $e");
     }
   }
 
   // Function to delete an expense entry
-  Future<void> deleteEntry(String userId, String entryId) async {
+  Future<void> deleteEntry(String userId, String type, String entryId) async {
     try {
       // Get reference to Firestore document
       DocumentReference entryRef = FirebaseFirestore.instance
           .collection('users')
           .doc(userId)
-          .collection('entries')
+          .collection(type)
           .doc(entryId);
 
       // Delete entry from Firestore
@@ -65,13 +69,17 @@ class DatabaseService {
   }
 
   // Function to fetch both income and expenses
-  Future<List<DocumentSnapshot>> fetchEntries(String userId) async {
+  Future<List<DocumentSnapshot>> fetchEntry(String userId, String type) async {
     try {
       // Get reference to Firestore collection for entries
-      CollectionReference entriesRef = FirebaseFirestore.instance.collection('users').doc(userId).collection('entries');
+      CollectionReference entriesRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection(type);
 
       // Fetch snapshots for entries
-      QuerySnapshot snapshot = await entriesRef.orderBy('timestamp', descending: true).get();
+      QuerySnapshot snapshot =
+          await entriesRef.orderBy('timestamp', descending: true).get();
 
       // Return list of document snapshots
       return snapshot.docs;
@@ -81,70 +89,18 @@ class DatabaseService {
     }
   }
 
-
-  // Function to add expense or income entry
-  Future<void> addIncome(String userId, String type, double amount,
-      String category, String description) async {
-    try {
-      // Get reference to Firestore collection
-      CollectionReference entries = FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .collection('income');
-
-      // Add entry to Firestore
-      await entries.add({
-        'type': type,
-        'amount': amount,
-        'category': category,
-        'description': description,
-        'timestamp': DateTime.now(),
-      });
-    } catch (e) {
-      print("Error adding icomme: $e");
-    }
-  }
-
-  // Function to delete an expense entry
-  Future<void> deleteIncome(String userId, String entryId) async {
-    try {
-      // Get reference to Firestore document
-      DocumentReference entryRef = FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .collection('income')
-          .doc(entryId);
-
-      // Delete entry from Firestore
-      await entryRef.delete();
-    } catch (e) {
-      print("Error delete income: $e");
-    }
-  }
-
-  // Function to fetch income snapshots
-  Future<List<DocumentSnapshot>> fetchIncome(String userId) async {
-    try {
-      // Get reference to Firestore collection
-      CollectionReference entries = FirebaseFirestore.instance.collection('users').doc(userId).collection('income');
-
-      // Fetch snapshots
-      QuerySnapshot snapshot = await entries.orderBy('timestamp', descending: true).get();
-
-      // Return list of document snapshots
-      return snapshot.docs;
-    } catch (e) {
-      print("Error fetching income: $e");
-      throw e;
-    }
-  }
-
   // Function to fetch both income and expenses
   Future<List<DocumentSnapshot>> fetchIncomeAndExpenses(String userId) async {
     try {
       // Get reference to Firestore collections for income and expenses
-      CollectionReference expensesRef = FirebaseFirestore.instance.collection('users').doc(userId).collection('entries');
-      CollectionReference incomeRef = FirebaseFirestore.instance.collection('users').doc(userId).collection('income');
+      CollectionReference expensesRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection('expense');
+      CollectionReference incomeRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection('income');
 
       // Fetch snapshots for expenses and income
       QuerySnapshot expensesSnapshot = await expensesRef.get();
@@ -154,7 +110,8 @@ class DatabaseService {
       List<DocumentSnapshot> combined = [];
       combined.addAll(expensesSnapshot.docs);
       combined.addAll(incomeSnapshot.docs);
-      combined.sort((a, b) => (b['timestamp'] as Timestamp).compareTo(a['timestamp'] as Timestamp)); // Sort by timestamp
+      combined.sort((a, b) => (b['timestamp'] as Timestamp)
+          .compareTo(a['timestamp'] as Timestamp)); // Sort by timestamp
 
       return combined;
     } catch (e) {
@@ -162,6 +119,4 @@ class DatabaseService {
       throw e;
     }
   }
-
-
 }

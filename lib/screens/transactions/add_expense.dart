@@ -158,6 +158,7 @@ class _AddExpenseState extends State<AddExpense> {
                                 .getUserIDFromSF();
                             DatabaseService().addEntry(
                                 uid ?? "",
+                                'expense',
                                 selectedWallet!,
                                 double.parse(amountController.text),
                                 selectedCategory!,
