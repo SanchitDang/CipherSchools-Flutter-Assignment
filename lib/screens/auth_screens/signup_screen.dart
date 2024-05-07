@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cipher_schools_flutter_assignment/service/AuthService.dart';
 
-import '../../helper/SharedPreferencesService.dart';
+import '../../helper/loading.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -96,7 +96,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      Get.to(LoginScren());
+                      Get.to(LoginScreen());
                     },
                     child: const Text(
                       'Login',
@@ -112,20 +112,12 @@ class SignUpScreen extends StatelessWidget {
 
   register() async {
     if (true) {
-      // setState(() {
-      //   _isLoading = true;
-      // });
       await AuthService()
           .registerUserWithEmailAndPassword(_nameController.text,
               _emailController.text, _passwordController.text, "imgURL")
           .then((value) async {
         if (value == true) {
           Get.to(const HomePage());
-        } else {
-          // showSnackbar(context, Colors.red, value);
-          // setState(() {
-          //   _isLoading = false;
-          // });
         }
       });
     }

@@ -4,6 +4,7 @@ import 'package:cipher_schools_flutter_assignment/common%20widgets/login_button.
 import 'package:cipher_schools_flutter_assignment/helper/SharedPreferencesService.dart';
 import 'package:cipher_schools_flutter_assignment/service/DatabaseService.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddExpense extends StatefulWidget {
   const AddExpense({Key? key}) : super(key: key);
@@ -87,7 +88,7 @@ class _AddExpenseState extends State<AddExpense> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Padding(
-                          padding: EdgeInsets.fromLTRB(0,8,6,0),
+                          padding: EdgeInsets.fromLTRB(0, 8, 6, 0),
                           child: Text(
                             "₹",
                             style: TextStyle(

@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.4,
+        height: MediaQuery.of(context).size.height * 0.36,
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                           Get.to(const AddIncome());
                         },
                         child: const Text(
-                          '+ Income',
+                          ' + Income ',
                           style: TextStyle(color: whiteColor),
                         ),
                       ),

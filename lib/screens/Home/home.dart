@@ -18,7 +18,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final _controller = Get.put(ButtonController());
-  String uid = "";
   String selectedMonth = 'January';
   List<String> months = [
     'January',
@@ -37,7 +36,6 @@ class _HomeState extends State<Home> {
 
   void setData() async {
     selectedMonth = DateFormat('MMMM').format(DateTime.now());
-    uid = await SharedPreferencesService.getUserIDFromSF() ?? "";
   }
 
   @override
@@ -335,7 +333,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               FutureBuilder<List<DocumentSnapshot>>(
-                future: DatabaseService().fetchIncomeAndExpenses(uid),
+                future: DatabaseService().fetchIncomeAndExpenses(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(

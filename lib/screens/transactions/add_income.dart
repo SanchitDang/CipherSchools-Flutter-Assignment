@@ -88,7 +88,7 @@ class _AddIncomeState extends State<AddIncome> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Padding(
-                          padding: EdgeInsets.fromLTRB(0,8,6,0),
+                          padding: EdgeInsets.fromLTRB(0, 8, 6, 0),
                           child: Text(
                             "₹",
                             style: TextStyle(

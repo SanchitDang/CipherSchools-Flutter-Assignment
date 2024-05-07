@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cipher_schools_flutter_assignment/screens/intro_screen.dart';
 import '../helper/SharedPreferencesService.dart';
+import '../helper/loading.dart';
 import 'DatabaseService.dart';
 
 class AuthService {
@@ -10,24 +11,25 @@ class AuthService {
 
   // login
   Future loginWithUserNameAndPassword(String email, String password) async {
+    LoadingUtils.showLoader();
     try {
       await firebaseAuth.signInWithEmailAndPassword(
-              email: email, password: password);
+          email: email, password: password);
 
-      QuerySnapshot snapshot =
-      await DatabaseService().gettingUserData(email);
+      QuerySnapshot snapshot = await DatabaseService().gettingUserData(email);
       // saving the values to our shared preferences
       await SharedPreferencesService.saveUserLoggedInStatus(true);
-      await SharedPreferencesService.saveUserEmailSF(password);
+      await SharedPreferencesService.saveUserEmailSF(email);
       await SharedPreferencesService.saveUserProfilePicSF(
           snapshot.docs[0]['profilePic']);
       await SharedPreferencesService.saveUserNameSF(
           snapshot.docs[0]['fullName']);
       await SharedPreferencesService.saveUserIDSF(snapshot.docs[0]['uid']);
-
+      LoadingUtils.hideLoader();
       return true;
-
     } on FirebaseAuthException catch (e) {
+      print("Error Logging in: $e");
+      LoadingUtils.hideLoader();
       return e.message;
     }
   }
@@ -35,6 +37,7 @@ class AuthService {
   // register
   Future registerUserWithEmailAndPassword(
       String fullName, String email, String password, String img) async {
+    LoadingUtils.showLoader();
     try {
       User user = (await firebaseAuth.createUserWithEmailAndPassword(
               email: email, password: password))
@@ -45,8 +48,11 @@ class AuthService {
       await SharedPreferencesService.saveUserProfilePicSF(img);
       await SharedPreferencesService.saveUserNameSF(fullName);
       await SharedPreferencesService.saveUserIDSF(user.uid);
+      LoadingUtils.hideLoader();
       return true;
     } on FirebaseAuthException catch (e) {
+      print("Error Signing up: $e");
+      LoadingUtils.hideLoader();
       return e.message;
     }
   }

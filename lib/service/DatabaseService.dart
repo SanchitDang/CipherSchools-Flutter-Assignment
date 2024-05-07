@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
+import 'package:get/get.dart';
+import '../helper/SharedPreferencesService.dart';
+import '../helper/loading.dart';
 
 class DatabaseService {
+
   // reference for our collections
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection("users");
@@ -28,6 +32,7 @@ class DatabaseService {
   Future<void> addEntry(String userId, String type, String paymentMethod,
       double amount, String category, String description) async {
     try {
+    LoadingUtils.showLoader();
       // Get reference to Firestore collection
       CollectionReference entries = FirebaseFirestore.instance
           .collection('users')
@@ -46,7 +51,11 @@ class DatabaseService {
 
       // Update the added entry with its document ID (UID)
       await entryRef.update({'uid': entryRef.id});
+      LoadingUtils.hideLoader();
+      Get.snackbar("Hurray!", "Entry Added Successfully.");
     } catch (e) {
+      LoadingUtils.hideLoader();
+      Get.snackbar("Error!", e.toString());
       print("Error adding entry: $e");
     }
   }
@@ -54,6 +63,7 @@ class DatabaseService {
   // Function to delete an expense entry
   Future<void> deleteEntry(String userId, String type, String entryId) async {
     try {
+    LoadingUtils.showLoader();
       // Get reference to Firestore document
       DocumentReference entryRef = FirebaseFirestore.instance
           .collection('users')
@@ -62,8 +72,14 @@ class DatabaseService {
           .doc(entryId);
 
       // Delete entry from Firestore
+
+    LoadingUtils.hideLoader();
+      Get.snackbar("Hurray!", "Entry Deleted Successfully.");
       await entryRef.delete();
     } catch (e) {
+
+      LoadingUtils.hideLoader();
+      Get.snackbar("Error!", e.toString());
       print("Error deleting entry: $e");
     }
   }
@@ -90,8 +106,10 @@ class DatabaseService {
   }
 
   // Function to fetch both income and expenses
-  Future<List<DocumentSnapshot>> fetchIncomeAndExpenses(String userId) async {
+  Future<List<DocumentSnapshot>> fetchIncomeAndExpenses() async {
     try {
+      String userId = await SharedPreferencesService.getUserIDFromSF() ?? "";
+
       // Get reference to Firestore collections for income and expenses
       CollectionReference expensesRef = FirebaseFirestore.instance
           .collection('users')

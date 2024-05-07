@@ -1,5 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cipher_schools_flutter_assignment/helper/loading.dart';
 import 'package:cipher_schools_flutter_assignment/common%20widgets/custom_text_field.dart';
 import 'package:cipher_schools_flutter_assignment/common%20widgets/login_button.dart';
 import 'package:cipher_schools_flutter_assignment/consts/colors.dart';
@@ -8,12 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cipher_schools_flutter_assignment/service/AuthService.dart';
 
-import '../../helper/SharedPreferencesService.dart';
-import '../../service/DatabaseService.dart';
 import '../Home/home_screen.dart';
 
-class LoginScren extends StatelessWidget {
-  LoginScren({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -104,21 +101,12 @@ class LoginScren extends StatelessWidget {
 
   login() async {
     if (true) {
-      // setState(() {
-      //   _isLoading = true;
-      // });
       await AuthService()
           .loginWithUserNameAndPassword(
               _emailController.text, _passwordController.text)
           .then((value) async {
         if (value == true) {
-
           Get.to(const HomePage());
-        } else {
-          // showSnackbar(context, Colors.red, value);
-          // setState(() {
-          //   _isLoading = false;
-          // });
         }
       });
     }
