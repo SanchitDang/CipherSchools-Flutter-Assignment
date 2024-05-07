@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               Container(
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(35),
                       bottomRight: Radius.circular(35)),
@@ -80,7 +80,8 @@ class _HomeState extends State<Home> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                color: const Color(0xff803efa), // Purple color border
+                                color: const Color(
+                                    0xff803efa), // Purple color border
                                 width: 2, // Border width
                               ),
                             ),
@@ -92,14 +93,14 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           ),
-          
-          
                           Container(
                             height: 40,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
+                              borderRadius: BorderRadius.circular(
+                                  20), // Adjust the radius as needed
                               border: Border.all(
-                                color: const Color(0xff803efa).withOpacity(0.5), // Light purple color
+                                color: const Color(0xff803efa)
+                                    .withOpacity(0.5), // Light purple color
                                 width: 0.8, // Border width
                               ),
                             ),
@@ -110,19 +111,23 @@ class _HomeState extends State<Home> {
                                   Icons.keyboard_arrow_down_sharp,
                                   color: Color(0xff803efa),
                                 ),
-                                const SizedBox(width: 2,),
+                                const SizedBox(
+                                  width: 2,
+                                ),
                                 DropdownButton(
                                   isExpanded: false,
                                   value: selectedMonth,
                                   icon: const SizedBox(),
                                   style: const TextStyle(color: Colors.black),
-                                  underline: const SizedBox(), // Remove the underline
+                                  underline:
+                                      const SizedBox(), // Remove the underline
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       selectedMonth = newValue!;
                                     });
                                   },
-                                  items: months.map<DropdownMenuItem<String>>((String value) {
+                                  items: months.map<DropdownMenuItem<String>>(
+                                      (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text(value),
@@ -132,7 +137,6 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                           ),
-          
                           IconButton(
                             onPressed: () {},
                             icon: const Icon(
@@ -342,76 +346,36 @@ class _HomeState extends State<Home> {
                   } else {
                     List<DocumentSnapshot<Object?>> entries =
                         (snapshot.data as List<DocumentSnapshot<Object?>>);
-          
+
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: entries.length,
                       itemBuilder: (BuildContext context, int index) {
                         String docId = entries[index]['uid'];
                         String category = entries[index]['category'];
-                        String amount =  entries[index]['amount'].toStringAsFixed(2);
+                        String amount =
+                            entries[index]['amount'].toStringAsFixed(2);
                         String type = entries[index]['type'];
-                        String time = formattedTimestamp(entries[index]['timestamp']);
+                        String time =
+                            formattedTimestamp(entries[index]['timestamp']);
                         String description = entries[index]['description'];
                         String image = '';
-                        if(category == "Shopping"){
+                        if (category == "Shopping") {
                           image = 'images/shopping.png';
-                        } else if(category == "Subscription"){
+                        } else if (category == "Subscription") {
                           image = 'images/bill.png';
-                        } else if(category == "Travel"){
+                        } else if (category == "Travel") {
                           image = 'images/car.png';
-                        } else if (category == "Food"){
+                        } else if (category == "Food") {
                           image = 'images/restaurant.png';
                         }
-                        return transaction(
-                            docId, type, image, category, amount, description, time
-                        );
+                        return transaction(docId, type, image, category, amount,
+                            description, time);
                       },
                     );
-          
-                }
+                  }
                 },
               )
-          
-              // Expanded(
-              //   child: SingleChildScrollView(
-              //     scrollDirection: Axis.vertical,
-              //     child: Column(children: [
-              //       transaction(
-              //           '2svjNhAIgndZFl9Kv2xK',
-              //           'expense',
-              //           'images/shopping.png',
-              //           'Shopping',
-              //           '120',
-              //           "Buy some groceries",
-              //           "10:00 am"),
-              //       transaction(
-              //           '2svjNhAIgndZFl9Kv2xK',
-              //           'income',
-              //           'images/bill.png',
-              //           'Subscription',
-              //           '1200',
-              //           "Buy some groceries",
-              //           "10:00 am"),
-              //       transaction(
-              //           '2svjNhAIgndZFl9Kv2xK',
-              //           'income',
-              //           'images/car.png',
-              //           'Travel',
-              //           '1200',
-              //           "Buy some groceries",
-              //           "10:00 am"),
-              //       transaction(
-              //           '2svjNhAIgndZFl9Kv2xK',
-              //           'income',
-              //           'images/restaurant.png',
-              //           'Food',
-              //           '1200',
-              //           "Buy some groceries",
-              //           "10:00 am")
-              //     ]),
-              //   ),
-              // )
             ],
           ),
         ),

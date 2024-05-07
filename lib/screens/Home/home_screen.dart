@@ -7,6 +7,7 @@ import 'package:cipher_schools_flutter_assignment/screens/profile/profile_screen
 import 'package:cipher_schools_flutter_assignment/screens/transactions/add_expense.dart';
 import 'package:cipher_schools_flutter_assignment/screens/transactions/add_income.dart';
 import 'package:cipher_schools_flutter_assignment/screens/transactions/transac_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -83,47 +84,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text('Choose An Option'),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Color(0xffFD3C4A))),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Get.to(const AddExpense());
-                      },
-                      child: const Text(
-                        'Expense',
-                        style: TextStyle(color: whiteColor),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Color(0xff00A86B))),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Get.to(const AddIncome());
-                      },
-                      child: const Text(
-                        'Income',
-                        style: TextStyle(color: whiteColor),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
+        onPressed: () => openAddBottomSheet(context),
         shape: const CircleBorder(),
         backgroundColor: const Color(0xff803efa),
         child: const Icon(
@@ -133,6 +94,104 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  static Future<dynamic> openAddBottomSheet(BuildContext context) {
+    return Get.bottomSheet(
+      elevation: 10,
+      backgroundColor: Colors.white,
+      isScrollControlled: true,
+      barrierColor: Colors.black.withOpacity(0.80),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.4,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  "Add a Track",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.black),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Add an Expense ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors.black),
+                      ),
+                      ElevatedButton(
+                        style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Color(0xffFD3C4A))),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Get.to(const AddExpense());
+                        },
+                        child: const Text(
+                          '+ Expense',
+                          style: TextStyle(color: whiteColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Add an Income ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors.black),
+                      ),
+                      ElevatedButton(
+                        style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Color(0xff00A86B))),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Get.to(const AddIncome());
+                        },
+                        child: const Text(
+                          '+ Income',
+                          style: TextStyle(color: whiteColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const Spacer(),
+              const Text(
+                "Tracking expenses is key to financial awareness. It helps you understand your spending habits and make smarter choices with your money.",
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
