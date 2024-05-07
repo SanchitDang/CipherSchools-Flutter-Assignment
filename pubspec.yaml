@@ -1,0 +1,42 @@
+name: cipher_schools_flutter_assignment
+description: "Building a Basic Expense Tracking Application."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  get: ^4.6.6
+  firebase_auth: ^4.3.0
+  firebase_core: ^2.8.0
+  cloud_firestore: ^4.4.5
+  shared_preferences: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/
+
+  fonts:
+      - family: sans_regular
+        fonts:
+          - asset: fonts/sans_regular.ttf
+      - family: sans_semibold
+        fonts:
+          - asset: fonts/sans_semibold.ttf
+      - family: sans_bold
+        fonts:
+          - asset: fonts/sans_bold.ttf
