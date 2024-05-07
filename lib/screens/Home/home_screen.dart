@@ -19,7 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var controller = Get.put(HomeController());
-  bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     var navBody = [
@@ -98,9 +97,7 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor:
                               MaterialStatePropertyAll(Color(0xffFD3C4A))),
                       onPressed: () {
-                        // Navigate to the 'NewTransaction' screen for Expense
-                        Navigator.of(context).pop(); // Close the dialog
-                        // Here you can add code to navigate to the 'NewTransaction' screen
+                        Navigator.of(context).pop();
                         Get.to(const AddExpense());
                       },
                       child: const Text(
@@ -113,9 +110,7 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor:
                               MaterialStatePropertyAll(Color(0xff00A86B))),
                       onPressed: () {
-                        // Navigate to the 'NewTransaction' screen for Income
-                        Navigator.of(context).pop(); // Close the dialog
-                        // Here you can add code to navigate to the 'NewTransaction' screen
+                        Navigator.of(context).pop();
                         Get.to(const AddIncome());
                       },
                       child: const Text(
