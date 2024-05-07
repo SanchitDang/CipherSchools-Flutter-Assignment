@@ -9,30 +9,29 @@ Widget profileButton(Color? icColor, String? title, String? img) {
     decoration: const BoxDecoration(
         color: whiteColor, borderRadius: BorderRadius.all(Radius.circular(10))),
     child: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
       child: Row(
         children: [
           Container(
+            height: 64,
+            width: 64,
+            padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-                // color: Color(0xffEEE5FF),
                 color: icColor!,
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
-            height: 70,
-            width: 70,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset(
-                img!,
-                width: 20,
+                borderRadius: const BorderRadius.all(Radius.circular(18))),
+            child: SizedBox(
+              child: Image(
+                image: AssetImage(img!),
+                fit: BoxFit.contain,
               ),
             ),
           ),
           const SizedBox(
-            width: 10,
+            width: 14,
           ),
           Text(
             title!,
-            style: const TextStyle(fontSize: 18, fontFamily: bold),
+            style: const TextStyle(fontSize: 18),
           )
         ],
       ),

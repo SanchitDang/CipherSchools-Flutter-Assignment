@@ -58,7 +58,6 @@ Widget transaction(String entryId, String type, String? img, String? title,
                   : title == 'Travel'
                   ? const Color(0xffF1F1FA)
                   : const Color(0xffFDD5D7),
-
             ),
             child: SizedBox(
               child: Image(
