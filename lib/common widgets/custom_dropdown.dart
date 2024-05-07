@@ -24,17 +24,16 @@ class _CustomDropdownState extends State<CustomDropdown> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: DropdownButtonFormField<String>(
+        icon: const Icon(Icons.keyboard_arrow_down, size: 30,),
         decoration: InputDecoration(
           hintText: widget.hint,
-          hintStyle: const TextStyle(fontFamily: semibold, color: fontGrey),
-          filled: true,
-          fillColor: whiteColor,
+          hintStyle: const TextStyle( fontWeight: FontWeight.w400, color: Colors.grey),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: const BorderSide(color: fontGrey),
+            borderSide: BorderSide(color: Colors.grey.shade50, width: 0.4), // Adjust the width here
           ),
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         ),
         value: _selectedItem,
         onChanged: (String? newValue) {
@@ -48,11 +47,12 @@ class _CustomDropdownState extends State<CustomDropdown> {
             value: value,
             child: Text(
               value,
-              style: const TextStyle(fontFamily: semibold),
+              style: const TextStyle(fontWeight: FontWeight.w400),
             ),
           );
         }).toList(),
       ),
     );
   }
+
 }

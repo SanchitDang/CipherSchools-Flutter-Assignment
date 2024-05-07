@@ -67,7 +67,7 @@ class _AddExpenseState extends State<AddExpense> {
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.22,
+              top: MediaQuery.of(context).size.height * 0.24,
               left: 0,
               right: 0,
               child: Padding(
@@ -83,36 +83,53 @@ class _AddExpenseState extends State<AddExpense> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    TextField(
-                      controller: amountController,
-                      keyboardType: TextInputType.number,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixText: '₹ ',
-                        prefixStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(0,8,6,0),
+                          child: Text(
+                            "₹",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 42,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                        hintText: 'Enter amount',
-                        hintStyle: TextStyle(
-                          color: Colors.white.withOpacity(0.6),
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
+                        Expanded(
+                          child: TextField(
+                            controller: amountController,
+                            keyboardType: TextInputType.number,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              hintText: 'Enter amount',
+                              hintStyle: TextStyle(
+                                color: Colors.white.withOpacity(0.6),
+                                fontSize: 38,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.35,
+              top: MediaQuery.of(context).size.height * 0.40,
               left: 0,
               right: 0,
               bottom: 0,

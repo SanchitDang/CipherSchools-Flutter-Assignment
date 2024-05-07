@@ -27,12 +27,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
         controller: widget.controller,
         obscureText: _obscureText,
         decoration: InputDecoration(
+
           hintText: widget.hint,
-          hintStyle: const TextStyle(fontFamily: semibold, color: fontGrey),
+          hintStyle: const TextStyle( fontWeight: FontWeight.w400, color: Colors.grey),
           filled: true,
           fillColor: whiteColor,
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(color: Colors.grey.shade50, width: 0.4), // Adjust the width here
           ),
           suffixIcon: widget.showVisibilityIcon ?? false
               ? IconButton(

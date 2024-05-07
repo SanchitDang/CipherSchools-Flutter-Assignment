@@ -6,14 +6,14 @@ Widget loginButton(onPress, String? title) {
   return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          backgroundColor: const Color(0xff7f00ff),
+              borderRadius: BorderRadius.all(Radius.circular(16))),
+          backgroundColor: const Color(0xff7F3DFF),
           padding: const EdgeInsets.all(12)),
       onPressed: onPress,
       child: Text(
         title!,
         style:
-            const TextStyle(fontFamily: bold, color: whiteColor, fontSize: 20),
+            const TextStyle( color: Colors.white, fontSize: 20),
       ));
 }
 
