@@ -19,6 +19,7 @@ dependencies:
   shared_preferences: any
   intl: any
   loading_animation_widget: ^1.2.0+3
+  google_sign_in: ^5.0.4
 
 dev_dependencies:
   flutter_test:

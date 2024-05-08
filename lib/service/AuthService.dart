@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cipher_schools_flutter_assignment/screens/intro_screen.dart';
+import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../helper/SharedPreferencesService.dart';
 import '../helper/loading.dart';
 import 'DatabaseService.dart';
@@ -28,7 +30,7 @@ class AuthService {
       LoadingUtils.hideLoader();
       return true;
     } on FirebaseAuthException catch (e) {
-      print("Error Logging in: $e");
+      Get.snackbar("Error Logging in!", e.toString());
       LoadingUtils.hideLoader();
       return e.message;
     }
@@ -51,9 +53,103 @@ class AuthService {
       LoadingUtils.hideLoader();
       return true;
     } on FirebaseAuthException catch (e) {
-      print("Error Signing up: $e");
+      Get.snackbar("Error Signing up!", e.toString());
       LoadingUtils.hideLoader();
       return e.message;
+    }
+  }
+
+  // Sign in with Google
+  // Future<User?> signInWithGoogle() async {
+  //   try {
+  //     // Trigger Google sign-in flow
+  //     final GoogleSignIn googleSignIn = GoogleSignIn();
+  //     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+  //
+  //     if (googleSignInAccount != null) {
+  //       // Obtain auth details from the request
+  //       final GoogleSignInAuthentication googleSignInAuthentication =
+  //       await googleSignInAccount.authentication;
+  //
+  //       // Create a new credential
+  //       final AuthCredential credential = GoogleAuthProvider.credential(
+  //         accessToken: googleSignInAuthentication.accessToken,
+  //         idToken: googleSignInAuthentication.idToken,
+  //       );
+  //
+  //       // Sign in with credential
+  //       final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
+  //
+  //       // Get user data
+  //       final User? user = userCredential.user;
+  //
+  //       return user;
+  //     } else {
+  //       // Handle sign-in failure
+  //       print("Google sign-in cancelled");
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     print("Error signing in with Google: $e");
+  //     return null;
+  //   }
+  // }
+
+  Future<User?> signInWithGoogle() async {
+    try {
+      // Trigger Google sign-in flow
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+
+      if (googleSignInAccount != null) {
+        // Obtain auth details from the request
+        final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
+
+        // Create a new credential
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
+
+        // Sign in with credential
+        final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
+
+        // Get user data
+        final User? user = userCredential.user;
+
+        if (user != null) {
+          // Check if it's the user's first time signing up
+          if (userCredential.additionalUserInfo?.isNewUser ?? false) {
+            // Retrieve user information from Google sign-in response
+            String fullName = user.displayName ?? "";
+            String email = user.email ?? "";
+            String img = user.photoURL ?? "";
+
+            // Save user data to Firestore
+            await DatabaseService().savingUserData(user.uid, fullName, email, img);
+
+            // Save user login status and other data to SharedPreferences
+            await SharedPreferencesService.saveUserLoggedInStatus(true);
+            await SharedPreferencesService.saveUserEmailSF(email);
+            await SharedPreferencesService.saveUserProfilePicSF(img);
+            await SharedPreferencesService.saveUserNameSF(fullName);
+            await SharedPreferencesService.saveUserIDSF(user.uid);
+          }
+        }
+
+        return user;
+      } else {
+        // Handle sign-in cancellation
+        Get.snackbar("Error!", "Google sign-in cancelled");
+        print("Google sign-in cancelled");
+        return null;
+      }
+    } catch (e) {
+      // Handle sign-in error
+      Get.snackbar("Error signing in with Google!", "$e");
+      print("Error signing in with Google: $e");
+      return null;
     }
   }
 
@@ -66,7 +162,7 @@ class AuthService {
       await firebaseAuth.signOut();
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => IntroScreen()),
+        MaterialPageRoute(builder: (context) => const IntroScreen()),
         (route) => false,
       );
     } catch (e) {

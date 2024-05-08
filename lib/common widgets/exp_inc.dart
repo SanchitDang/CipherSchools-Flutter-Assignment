@@ -1,7 +1,7 @@
 import 'package:cipher_schools_flutter_assignment/consts/colors.dart';
 import 'package:flutter/material.dart';
 
-Widget incomeExpense(Color color, String title, String img) {
+Widget incomeExpense(Color color, String title, String img, int income) {
   return Container(
     decoration: BoxDecoration(
       color: color,
@@ -36,9 +36,9 @@ Widget incomeExpense(Color color, String title, String img) {
               title,
               style: const TextStyle(fontSize: 14, color: whiteColor),
             ),
-            const Text(
-              "₹50000",
-              style: TextStyle(
+             Text(
+              "₹ $income",
+              style: const TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 24, color: whiteColor),
             ),
           ],

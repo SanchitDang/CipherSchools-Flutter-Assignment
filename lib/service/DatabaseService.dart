@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'package:get/get.dart';
 import '../helper/SharedPreferencesService.dart';
@@ -135,6 +136,18 @@ class DatabaseService {
     } catch (e) {
       print("Error fetching income and expenses: $e");
       throw e;
+    }
+  }
+
+  // Check if user exists in Firestore
+  Future<bool> checkUserExists(String userId) async {
+    try {
+      DocumentSnapshot userSnapshot =
+      await userCollection.doc(userId).get();
+      return userSnapshot.exists;
+    } catch (e) {
+      print("Error checking user existence: $e");
+      return false;
     }
   }
 }

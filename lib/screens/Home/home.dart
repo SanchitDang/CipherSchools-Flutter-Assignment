@@ -2,7 +2,6 @@ import 'package:cipher_schools_flutter_assignment/common%20widgets/exp_inc.dart'
 import 'package:cipher_schools_flutter_assignment/common%20widgets/transaction_widget.dart';
 import 'package:cipher_schools_flutter_assignment/consts/styles.dart';
 import 'package:cipher_schools_flutter_assignment/controller/home_controller.dart';
-import 'package:cipher_schools_flutter_assignment/helper/SharedPreferencesService.dart';
 import 'package:cipher_schools_flutter_assignment/service/DatabaseService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
   _HomeState createState() => _HomeState();
@@ -19,6 +18,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final _controller = Get.put(ButtonController());
   String selectedMonth = 'January';
+  int accBalance = 38000;
+  int accIncome = 38000;
+  int accExpense = 38000;
   List<String> months = [
     'January',
     'February',
@@ -160,8 +162,8 @@ class _HomeState extends State<Home> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "₹38000",
+                    Text(
+                      "₹ $accBalance",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
@@ -175,9 +177,9 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         incomeExpense(const Color(0xff00A86B), "Income",
-                            'images/income.png'),
+                            'images/income.png', accIncome),
                         incomeExpense(const Color(0xffFD3C4A), "Expenses",
-                            'images/Expense.png'),
+                            'images/Expense.png', accExpense),
                       ],
                     ),
                     const SizedBox(

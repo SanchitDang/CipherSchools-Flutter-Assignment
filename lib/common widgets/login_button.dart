@@ -1,6 +1,11 @@
 import 'package:cipher_schools_flutter_assignment/consts/colors.dart';
 import 'package:cipher_schools_flutter_assignment/consts/styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../helper/SharedPreferencesService.dart';
+import '../service/AuthService.dart';
+import '../service/DatabaseService.dart';
 
 Widget loginButton(onPress, String? title) {
   return ElevatedButton(
@@ -26,7 +31,7 @@ Widget googleButton(String? login) {
               borderRadius: BorderRadius.all(Radius.circular(10))),
           backgroundColor: whiteColor,
           padding: const EdgeInsets.all(12)),
-      onPressed: () {},
+      onPressed: () => AuthService().signInWithGoogle(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -35,12 +40,13 @@ Widget googleButton(String? login) {
             width: 26,
             height: 26,
           ),
-          const SizedBox(width: 12,),
+          const SizedBox(
+            width: 12,
+          ),
           Text(
             login!,
             style: const TextStyle(color: Colors.black, fontSize: 16),
           ),
-
         ],
       ),
     ),
