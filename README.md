@@ -42,27 +42,41 @@ A Basic Expense Tracking Application made using Flutter and Firebase.
 - **Integration with Financial Services**: Explore integration with financial services APIs to provide additional features such as bill payments, investment tracking, etc.
 
 ## Apk Link
-[APK Link](#)
-
-## In-app Screenshots
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/splash.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/intro.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/signup.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/login.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/home.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addtrack.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addincome.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addexpense.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/delete.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/transactions.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/transaction2.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/profile.png" width="200" height="400" />
-- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/logoutdialog.png" width="200" height="400" />
+- https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/ExpenseTracker.apk
 
 ## In-app Video
-- [Video 1](#)
-- [Video 2](#)
+- https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/appdemo.mp4
+
+## In-app Screenshots
+- Splash Screen
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/splash.png" width="200" height="400" />
+- Intro Screen
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/intro.png" width="200" height="400" />
+- SignUp Screen with google signup
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/signup.png" width="200" height="400" />
+- Login Screen with google login
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/login.png" width="200" height="400" />
+- Home Screen
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/home.png" width="200" height="400" />
+- Add Track BottomSheet
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addtrack.png" width="200" height="400" />
+- Add Income Screen
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addincome.png" width="200" height="400" />
+- Add Expense Screen
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addexpense.png" width="200" height="400" />
+- Swipe to Delete Income/Expense
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/delete.png" width="200" height="400" />
+- Transactions Today
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/transactions.png" width="200" height="400" />
+- Transactions This Year
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/transaction2.png" width="200" height="400" />
+- User Profile
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/profile.png" width="200" height="400" />
+- logout
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/logoutdialog.png" width="200" height="400" />
 
 ## Database Schema
-- ![Image 1](#)
-- ![Image 2](#)
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/databse_schema/auth.png" width="800" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/databse_schema/user.png" width="800" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/databse_schema/expense.png" width="800" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/databse_schema/income.png" width="800" height="400" />
