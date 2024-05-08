@@ -45,8 +45,19 @@ A Basic Expense Tracking Application made using Flutter and Firebase.
 [APK Link](#)
 
 ## In-app Screenshots
-- [Screenshot 1](#)
-- [Intro Screen](https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/intro.png)
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/splash.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/intro.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/signup.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/login.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/home.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addtrack.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addincome.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/addexpense.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/delete.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/transactions.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/transaction2.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/profile.png" width="200" height="400" />
+- <img src="https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/logoutdialog.png" width="200" height="400" />
 
 ## In-app Video
 - [Video 1](#)
