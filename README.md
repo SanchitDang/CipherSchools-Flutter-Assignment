@@ -46,7 +46,7 @@ A Basic Expense Tracking Application made using Flutter and Firebase.
 
 ## In-app Screenshots
 - [Screenshot 1](#)
-- [Intro Screen](#https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/intro.png)
+- [Intro Screen](https://github.com/SanchitDang/CipherSchools-Flutter-Assignment/blob/master/AppDemo/screenshots/intro.png)
 
 ## In-app Video
 - [Video 1](#)
