@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../helper/SharedPreferencesService.dart';
 import '../helper/loading.dart';
+import '../screens/Home/home_screen.dart';
 import 'DatabaseService.dart';
 
 class AuthService {
@@ -60,43 +61,9 @@ class AuthService {
   }
 
   // Sign in with Google
-  // Future<User?> signInWithGoogle() async {
-  //   try {
-  //     // Trigger Google sign-in flow
-  //     final GoogleSignIn googleSignIn = GoogleSignIn();
-  //     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-  //
-  //     if (googleSignInAccount != null) {
-  //       // Obtain auth details from the request
-  //       final GoogleSignInAuthentication googleSignInAuthentication =
-  //       await googleSignInAccount.authentication;
-  //
-  //       // Create a new credential
-  //       final AuthCredential credential = GoogleAuthProvider.credential(
-  //         accessToken: googleSignInAuthentication.accessToken,
-  //         idToken: googleSignInAuthentication.idToken,
-  //       );
-  //
-  //       // Sign in with credential
-  //       final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
-  //
-  //       // Get user data
-  //       final User? user = userCredential.user;
-  //
-  //       return user;
-  //     } else {
-  //       // Handle sign-in failure
-  //       print("Google sign-in cancelled");
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     print("Error signing in with Google: $e");
-  //     return null;
-  //   }
-  // }
-
   Future<User?> signInWithGoogle() async {
     try {
+      LoadingUtils.showLoader();
       // Trigger Google sign-in flow
       final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
@@ -135,18 +102,24 @@ class AuthService {
             await SharedPreferencesService.saveUserProfilePicSF(img);
             await SharedPreferencesService.saveUserNameSF(fullName);
             await SharedPreferencesService.saveUserIDSF(user.uid);
+
           }
+
+          LoadingUtils.hideLoader();
+          Get.to(const HomePage());
         }
 
         return user;
       } else {
         // Handle sign-in cancellation
+        LoadingUtils.hideLoader();
         Get.snackbar("Error!", "Google sign-in cancelled");
         print("Google sign-in cancelled");
         return null;
       }
     } catch (e) {
       // Handle sign-in error
+      LoadingUtils.hideLoader();
       Get.snackbar("Error signing in with Google!", "$e");
       print("Error signing in with Google: $e");
       return null;
