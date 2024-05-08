@@ -33,6 +33,7 @@ flutter:
     - images/
 
   fonts:
+
       - family: sans_regular
         fonts:
           - asset: fonts/sans_regular.ttf
@@ -42,3 +43,15 @@ flutter:
       - family: sans_bold
         fonts:
           - asset: fonts/sans_bold.ttf
+
+      - family: Cambay-Regular
+        fonts:
+          - asset: fonts/Cambay-Regular.ttf
+
+      - family: BrunoAceSC-Regular
+        fonts:
+          - asset: fonts/BrunoAceSC-Regular.ttf
+
+      - family: ABeeZee-Regular
+        fonts:
+          - asset: fonts/ABeeZee-Regular.ttf

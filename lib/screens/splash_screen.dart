@@ -15,12 +15,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   bool _isSignedIn = false;
 
-  changeScreen() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Get.to( _isSignedIn ? const HomePage() : const IntroScreen());
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -28,14 +22,19 @@ class _SplashScreenState extends State<SplashScreen> {
     changeScreen();
   }
 
-  getUserLoggedInStatus() async {
-    await SharedPreferencesService.getUserLoggedInStatus().then((value) {
-      if (value != null) {
-          _isSignedIn = value;
-      }
+  changeScreen() {
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.to(_isSignedIn ? const HomePage() : const IntroScreen());
     });
   }
 
+  getUserLoggedInStatus() async {
+    await SharedPreferencesService.getUserLoggedInStatus().then((value) {
+      if (value != null) {
+        _isSignedIn = value;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +49,47 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               const Spacer(),
               Image.asset('images/logo.png'),
+              const SizedBox(
+                height: 5
+              ),
+              const Text(
+                "CipherX",
+                style:
+                TextStyle(color: Colors.white, fontSize: 44, fontFamily: "BrunoAceSC-Regular"),
+              ),
               const Spacer(),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Column(
                   children: [
-                    Text(
-                      "Open Source ",
-                      style: TextStyle(color: Colors.grey[400],fontSize: 18),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "By",
+                          style:
+                              TextStyle(color: Colors.grey[400], fontSize: 14),
+                        ),
+                      ],
                     ),
-                    const Text(
-                      "Community",
-                      style: TextStyle(color: Colors.orange,fontSize: 18),
-                    )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Open Source ",
+                          style:
+                              TextStyle(color: Colors.grey[400], fontFamily:"Cambay-Regular" ,fontSize: 14),
+                        ),
+                        Text(
+                          "Community",
+                          style: TextStyle(
+                              color: Colors.orange[500], fontFamily:"Cambay-Regular" ,fontSize: 14),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
                   ],
                 ),
               )

@@ -18,7 +18,7 @@ class TransactionScreen extends StatelessWidget {
         elevation: 1,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             FutureBuilder<List<DocumentSnapshot>>(

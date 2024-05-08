@@ -12,8 +12,7 @@ Widget loginButton(onPress, String? title) {
       onPressed: onPress,
       child: Text(
         title!,
-        style:
-            const TextStyle( color: Colors.white, fontSize: 20),
+        style: const TextStyle(color: Colors.white, fontSize: 20),
       ));
 }
 
@@ -28,18 +27,20 @@ Widget googleButton(String? login) {
           backgroundColor: whiteColor,
           padding: const EdgeInsets.all(12)),
       onPressed: () {},
-      child:  Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            login!,
-            style: const TextStyle(color: Colors.black,fontSize: 20),
-          ),
           const Image(
             image: AssetImage('images/google_logo.png'),
-            width: 30,
-            height: 30,
-          )
+            width: 26,
+            height: 26,
+          ),
+          const SizedBox(width: 12,),
+          Text(
+            login!,
+            style: const TextStyle(color: Colors.black, fontSize: 16),
+          ),
+
         ],
       ),
     ),
