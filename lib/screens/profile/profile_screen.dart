@@ -57,14 +57,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: primaryColor, // Purple color border
-                      width: 2, // Border width
+                      width: 2.5, // Border width
                     ),
                   ),
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.transparent,
-                    child: Image.asset(
-                      'images/user.png',
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: CircleAvatar(
+                      radius: 36,
+                      backgroundColor: Colors.transparent,
+                      child: Image.asset(
+                        'images/profile.png',
+                      ),
                     ),
                   ),
                 ),

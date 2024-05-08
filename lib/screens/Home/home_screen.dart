@@ -1,5 +1,5 @@
 import 'package:cipher_schools_flutter_assignment/consts/colors.dart';
-import 'package:cipher_schools_flutter_assignment/consts/styles.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:cipher_schools_flutter_assignment/controller/home_controller.dart';
 import 'package:cipher_schools_flutter_assignment/screens/Home/home.dart';
 import 'package:cipher_schools_flutter_assignment/screens/budget/budget_screen.dart';
@@ -19,6 +19,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var controller = Get.put(HomeController());
+
+  final imgList = [
+    'images/home.png',
+    'images/transaction.png',
+    'images/pie-chart.png',
+    'images/user.png',
+  ];
+
+  final namesList = [
+    'Home',
+    'Transaction',
+    'Budget',
+    'Profile',
+  ];
+
   @override
   Widget build(BuildContext context) {
     var navBody = [
@@ -31,57 +46,36 @@ class _HomePageState extends State<HomePage> {
       body: Center(
           child:
               Obx(() => navBody.elementAt(controller.currentNavIndex.value))),
-      bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          currentIndex: controller.currentNavIndex.value,
-          selectedItemColor: primaryColor,
-          selectedIconTheme: const IconThemeData(color: primaryColor),
-          selectedLabelStyle: const TextStyle(fontFamily: semibold),
-          items: [
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/home.png',
-                  width: 26,
-                  color: controller.currentNavIndex.value == 0
+      bottomNavigationBar: Obx(() => AnimatedBottomNavigationBar.builder(
+            itemCount: 4,
+            height: 75,
+            tabBuilder: (int index, bool isActive) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    imgList[index],
+                    width: 26,
+                    color: controller.currentNavIndex.value == index
+                        ? primaryColor
+                        : null,
+                  ),
+                  Text(namesList[index], style: TextStyle(color: controller.currentNavIndex.value == index
                       ? primaryColor
-                      : null,
-                ),
-                label: "Home"),
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/transaction.png',
-                  width: 26,
-                  color: controller.currentNavIndex.value == 1
-                      ? primaryColor
-                      : null,
-                ),
-                label: "Transactions"),
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/pie-chart.png',
-                  width: 26,
-                  color: controller.currentNavIndex.value == 2
-                      ? primaryColor
-                      : null,
-                ),
-                label: "Budget"),
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/user.png',
-                  width: 26,
-                  color: controller.currentNavIndex.value == 3
-                      ? primaryColor
-                      : null,
-                ),
-                label: "Profile"),
-          ],
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: whiteColor,
-          onTap: (value) {
-            controller.currentNavIndex.value = value;
-          },
-        ),
-      ),
+                      : textFieldGrey,),),
+                ],
+              );
+            },
+            backgroundColor: Colors.white,
+            activeIndex: controller.currentNavIndex.value,
+            splashColor: primaryColor,
+            splashSpeedInMilliseconds: 300,
+            notchSmoothness: NotchSmoothness.defaultEdge,
+            gapLocation: GapLocation.center,
+            onTap: (value) {
+              controller.currentNavIndex.value = value;
+            },
+          )),
       floatingActionButton: FloatingActionButton(
         onPressed: () => openAddBottomSheet(context),
         shape: const CircleBorder(),

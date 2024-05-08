@@ -30,7 +30,7 @@ class HomePageController extends GetxController {
   }
 
   void setData() async {
-    selectedMonth.value = DateFormat('MMMM').format(DateTime.now());
+    // selectedMonth.value = DateFormat('MMMM').format(DateTime.now());
   }
 
   @override

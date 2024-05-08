@@ -58,11 +58,14 @@ class Home extends StatelessWidget {
                                 width: 2, // Border width
                               ),
                             ),
-                            child: CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Colors.transparent,
-                              child: Image.asset(
-                                'images/user.png',
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: CircleAvatar(
+                                radius: 18,
+                                backgroundColor: Colors.transparent,
+                                child: Image.asset(
+                                  'images/profile.png',
+                                ),
                               ),
                             ),
                           ),
