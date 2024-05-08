@@ -103,11 +103,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: media.width * 0.07,
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: const Color(0xff803efa), width: 2),
+                              color: primaryColor, width: 2),
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(10),
                           color: (terms == true)
-                              ? const Color(0xff803efa)
+                              ? primaryColor
                               : Colors.white),
                       child: const Icon(Icons.done, color: Colors.white)),
                 ),
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Terms of Service and Privacy Policy',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff803efa),
+                            color: primaryColor,
                           ),
                         ),
                       ),
@@ -179,9 +179,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(
-                        color: Color(0xff803efa),
+                        color: primaryColor,
                         decoration: TextDecoration.underline,
-                        decorationColor: Color(0xff803efa),
+                        decorationColor: primaryColor,
                       ),
                     ))
               ],

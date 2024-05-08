@@ -56,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: const Color(0xff803efa), // Purple color border
+                      color: primaryColor, // Purple color border
                       width: 2, // Border width
                     ),
                   ),

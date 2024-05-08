@@ -6,8 +6,7 @@ import 'package:cipher_schools_flutter_assignment/screens/budget/budget_screen.d
 import 'package:cipher_schools_flutter_assignment/screens/profile/profile_screen.dart';
 import 'package:cipher_schools_flutter_assignment/screens/transactions/add_expense.dart';
 import 'package:cipher_schools_flutter_assignment/screens/transactions/add_income.dart';
-import 'package:cipher_schools_flutter_assignment/screens/transactions/transac_screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cipher_schools_flutter_assignment/screens/transactions/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var navBody = [
-      const Home(),
+      Home(),
       const TransactionScreen(),
       const BudgetScreen(),
       const ProfileScreen()
@@ -35,8 +34,8 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           currentIndex: controller.currentNavIndex.value,
-          selectedItemColor: const Color(0xff803efa),
-          selectedIconTheme: const IconThemeData(color: Color(0xff803efa)),
+          selectedItemColor: primaryColor,
+          selectedIconTheme: const IconThemeData(color: primaryColor),
           selectedLabelStyle: const TextStyle(fontFamily: semibold),
           items: [
             BottomNavigationBarItem(
@@ -44,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                   'images/home.png',
                   width: 26,
                   color: controller.currentNavIndex.value == 0
-                      ? const Color(0xff803efa)
+                      ? primaryColor
                       : null,
                 ),
                 label: "Home"),
@@ -53,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                   'images/transaction.png',
                   width: 26,
                   color: controller.currentNavIndex.value == 1
-                      ? const Color(0xff803efa)
+                      ? primaryColor
                       : null,
                 ),
                 label: "Transactions"),
@@ -62,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                   'images/pie-chart.png',
                   width: 26,
                   color: controller.currentNavIndex.value == 2
-                      ? const Color(0xff803efa)
+                      ? primaryColor
                       : null,
                 ),
                 label: "Budget"),
@@ -71,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   'images/user.png',
                   width: 26,
                   color: controller.currentNavIndex.value == 3
-                      ? const Color(0xff803efa)
+                      ? primaryColor
                       : null,
                 ),
                 label: "Profile"),
@@ -86,7 +85,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => openAddBottomSheet(context),
         shape: const CircleBorder(),
-        backgroundColor: const Color(0xff803efa),
+        backgroundColor: primaryColor,
         child: const Icon(
           Icons.add,
           size: 40.0,
